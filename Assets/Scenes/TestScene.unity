@@ -477,13 +477,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
   trans: {fileID: 0}
-  walkSpeed: 5
+  walkSpeed: 4
   sprintSpeed: 8
   crouchSpeed: 2.5
-  jumpHeight: 4
-  aerialSpeed: 2.5
-  groundGravity: 10
-  aerialGravity: 9.8
+  jumpHeight: 8
+  aerialSpeed: 1
+  groundGravity: 15
+  aerialGravity: 5
   maxStepHeight: 0.5
   maxSlopeAngle: 45
   stepEdge: 0

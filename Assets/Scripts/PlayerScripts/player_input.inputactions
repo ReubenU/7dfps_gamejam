@@ -263,7 +263,7 @@
                     "name": "",
                     "id": "9155f794-54de-427b-aa0b-8423187129e3",
                     "path": "<Keyboard>/space",
-                    "interactions": "Tap",
+                    "interactions": "Tap(duration=0.1)",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",
                     "action": "Jump",

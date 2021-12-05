@@ -8,6 +8,7 @@ public class StandingState : PlayerBaseState
 
     public override void EnterState()
     {
+        Debug.Log("Standing!");
     }
 
     public override void UpdateState()
@@ -33,7 +34,7 @@ public class StandingState : PlayerBaseState
 
         Vector3 newVelocity = new Vector3(walkDirection.x, 0f, walkDirection.y) * Player.walkSpeed;
 
-        player_move_vector = Vector3.Lerp(player_move_vector, newVelocity, 5f * Time.deltaTime);
+        player_move_vector = Vector3.Lerp(player_move_vector, newVelocity, 15f * Time.deltaTime);
 
         Player.rigid.AddForce(
             Player.trans.TransformDirection(player_move_vector)-friction,
@@ -44,6 +45,7 @@ public class StandingState : PlayerBaseState
         if (Player.isJumping)
         {
             Player.SwitchState(Player.jumpState);
+            
         }
 
 
@@ -55,7 +57,9 @@ public class StandingState : PlayerBaseState
 
         // If player walks off ledge....
         if (!Player.isPlayerGrounded)
+        {
             Player.SwitchState(Player.aerialState);
+        }
         
     }
 

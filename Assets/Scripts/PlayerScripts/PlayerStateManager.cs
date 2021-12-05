@@ -43,9 +43,11 @@ public class PlayerStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get the player's transform and rigidbody.
         rigid = GetComponent<Rigidbody>();
         trans = GetComponent<Transform>();
 
+        // Initialize the player's states.
         standState = new StandingState(this);
         crouchState = new CrouchingState(this);
         jumpState = new JumpState(this);
@@ -54,6 +56,8 @@ public class PlayerStateManager : MonoBehaviour
         currentState = standState;
 
         currentState.EnterState();
+
+        
     }
 
     // Update is called once per frame

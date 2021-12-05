@@ -28,6 +28,10 @@ public class AerialState : PlayerBaseState
     public override void EnterState()
     {
         Player.groundNormal = Vector3.up;
+
+        player_move_vector = Vector3.zero;
+
+        Debug.Log("Aerial!");
     }
 
     // This function enables the player to smoothly move around the world.

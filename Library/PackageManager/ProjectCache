@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637741538918978180
-    m_Hash: 1919673144
+      ticks: 637742599628428033
+    m_Hash: 1920715266
   m_LockFileStatus:
     m_FilePath: C:/Users/rjuni/Documents/UnityProjects/7dfps_gamejam/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637741538919068124
-    m_Hash: 3247269521
+      ticks: 637742599628428033
+    m_Hash: 4034563539
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
