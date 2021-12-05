@@ -36,8 +36,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\PlayerBaseState.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\PlayerStateManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\AerialState.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\JumpState.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\StandingState.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\CrouchingState.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.15f1\Editor\2020.3.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

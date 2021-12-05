@@ -3,16 +3,16 @@ using UnityEngine;
 
 public abstract class PlayerBaseState
 {
-    public Player player;
+    protected PlayerStateManager _player;
 
-    public PlayerBaseState nxtState;
-
-    public PlayerBaseState(Player _player)
+    public PlayerBaseState(PlayerStateManager player)
     {
-        player = _player;
+        _player = player;
     }
 
+    public PlayerStateManager Player{ get{return _player;} set{_player = value;} }
+
     public abstract void EnterState();
+
     public abstract void UpdateState();
-    public abstract void ExitState();
 }
