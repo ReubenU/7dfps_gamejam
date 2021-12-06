@@ -31,7 +31,6 @@ public class AerialState : PlayerBaseState
 
         player_move_vector = Vector3.zero;
 
-        Debug.Log("Aerial!");
     }
 
     // This function enables the player to smoothly move around the world.
@@ -47,7 +46,7 @@ public class AerialState : PlayerBaseState
 
         Vector3 newVelocity = new Vector3(walkDirection.x, 0f, walkDirection.y) * Player.walkSpeed;
 
-        player_move_vector = Vector3.Lerp(player_move_vector, newVelocity, Player.aerialSpeed * Time.deltaTime);
+        player_move_vector = Vector3.Lerp(player_move_vector, newVelocity, Player.aerialSpeed * Time.fixedDeltaTime);
 
         Player.rigid.AddForce(
             Player.trans.TransformDirection(player_move_vector),

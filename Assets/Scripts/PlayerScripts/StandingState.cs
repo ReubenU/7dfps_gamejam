@@ -15,11 +15,6 @@ public class StandingState : PlayerBaseState
     {
         Move();
 
-        // if (Input.GetKey(Player.crouchKey))
-        // {
-        //     Player.SwitchState(Player.crouchState);
-        // }
-
         IsGrounded();
 
     }
@@ -34,10 +29,10 @@ public class StandingState : PlayerBaseState
 
         Vector3 newVelocity = new Vector3(walkDirection.x, 0f, walkDirection.y) * Player.walkSpeed;
 
-        player_move_vector = Vector3.Lerp(player_move_vector, newVelocity, 15f * Time.deltaTime);
+        player_move_vector = Vector3.Lerp(player_move_vector, newVelocity, 15f * Time.fixedDeltaTime);
 
         Player.rigid.AddForce(
-            Player.trans.TransformDirection(player_move_vector)-friction,
+            Player.trans.TransformDirection(player_move_vector*1/Time.fixedDeltaTime)-(friction*1/Time.fixedDeltaTime),
             ForceMode.Acceleration
         );
 
@@ -63,6 +58,7 @@ public class StandingState : PlayerBaseState
         
     }
 
+    // Determine if the player is grounded.
     void IsGrounded()
     {
         if (Player.isPlayerColliding && Player.isPlayerFeetNearGround)

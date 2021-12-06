@@ -61,7 +61,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         currentState.UpdateState();
     }
@@ -85,8 +85,8 @@ public class PlayerStateManager : MonoBehaviour
         isJumping = context.ReadValueAsButton();
     }
 
-    // Physics Handling...
 
+    // Physics Handling...
     void OnCollisionEnter(Collision collision)
     {
         int numContacts = collision.GetContacts(collision.contacts);

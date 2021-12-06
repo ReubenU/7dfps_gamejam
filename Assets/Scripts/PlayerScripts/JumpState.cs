@@ -15,23 +15,10 @@ public class JumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Jumped!");
 
+        float jumpVelocity = Mathf.Sqrt(2 * Player.jumpHeight * Player.aerialGravity);
 
-        if (Player.isPlayerGrounded)
-        {
-            float jumpVelocity = Mathf.Sqrt(4 * Player.jumpHeight * Player.aerialGravity);
-
-            Player.rigid.velocity += jumpVelocity * Vector3.up;
-
-            refVelocity = Player.rigid.velocity;
-
-            refVelocity.y = Mathf.Clamp(refVelocity.y, -refVelocity.y, jumpVelocity);
-
-            Player.rigid.velocity = refVelocity;
-
-            //Debug.Log(string.Format("{0}, {1}",jumpVelocity, Player.rigid.velocity.y));
-        }
+        Player.rigid.AddForce((jumpVelocity - Player.rigid.velocity.y) * Vector3.up, ForceMode.VelocityChange);
 
         Player.SwitchState(Player.aerialState);
     }
