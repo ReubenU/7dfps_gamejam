@@ -24,8 +24,11 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Player Settings")]
     public float walkSpeed = 5f;
     public float sprintSpeed = 10f;
-    public float jumpHeight = 3f;
     public float aerialSpeed = 2.5f;
+
+    [Header("Player Jump Settings")]
+    public float jumpHeight = 3f;
+    public bool isUnderObject = false;
 
     public float groundGravity = 50f;
     public float aerialGravity = 25f;
@@ -108,7 +111,6 @@ public class PlayerStateManager : MonoBehaviour
     public void GetCrouchInput(InputAction.CallbackContext context)
     {
         isCrouching = context.ReadValueAsButton();
-        Debug.Log(isCrouching);
     }
 
 

@@ -59,8 +59,7 @@ public class AerialState : PlayerBaseState
     // the player is grounded.
     void IsGrounded()
     {
-
-        if (Player.isPlayerFeetNearGround)
+        if (Player.isPlayerColliding && Player.isPlayerFeetNearGround)
         {
             Player.isPlayerGrounded = true;
         }
@@ -70,6 +69,5 @@ public class AerialState : PlayerBaseState
             Player.groundNormal = Vector3.up;
             Player.foot2Ground = Vector3.down;
         }
-        
     }
 }

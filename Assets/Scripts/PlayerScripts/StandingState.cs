@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class StandingState : PlayerBaseState
 {
+    public float playerMoveSpeed;
 
     public StandingState(PlayerStateManager player):base(player){}
 
@@ -10,6 +11,8 @@ public class StandingState : PlayerBaseState
     {
         Player.stand_collision.enabled = true;
         Player.crouch_collision.enabled = false;
+
+        playerMoveSpeed = Player.walkSpeed;
     }
 
     public override void UpdateState()
@@ -28,7 +31,7 @@ public class StandingState : PlayerBaseState
         Vector2 walkDirection = Player.walkInputVector;
 
 
-        Vector3 newVelocity = new Vector3(walkDirection.x, 0f, walkDirection.y) * Player.walkSpeed;
+        Vector3 newVelocity = new Vector3(walkDirection.x, 0f, walkDirection.y) * playerMoveSpeed;
 
         player_move_vector = Vector3.Lerp(player_move_vector, newVelocity, 15f * Time.fixedDeltaTime);
 
@@ -38,7 +41,7 @@ public class StandingState : PlayerBaseState
         );
 
         // Switch to jump state if player wishes to jump.
-        if (Player.isJumping)
+        if (Player.isJumping && Player.isPlayerGrounded && !Player.isUnderObject)
         {
             Player.SwitchState(Player.jumpState);
             

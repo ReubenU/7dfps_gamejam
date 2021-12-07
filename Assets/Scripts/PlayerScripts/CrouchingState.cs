@@ -6,8 +6,6 @@ public class CrouchingState : PlayerBaseState
 
     public CrouchingState(PlayerStateManager player) : base(player){}
 
-    float crouchSlider = 0f;
-
     public override void EnterState()
     {
     }
@@ -19,8 +17,14 @@ public class CrouchingState : PlayerBaseState
 
     // Crouch ability
     bool pullup = false;
+
+    RaycastHit hitInfo;
     void Crouch()
     {
+        // Check if the player has an object above them
+        Player.isUnderObject = Physics.SphereCast( Player.trans.position - (Vector3.up * 1f), .5f, Vector3.up, out hitInfo, 1f);
+
+        // If the player is holding the crouch key:
         if (Player.isCrouching)
         {
             Player.stand_collision.enabled = false;
@@ -29,7 +33,7 @@ public class CrouchingState : PlayerBaseState
             // If the player wants to crouch while in midair or crouch-jump:
             if (Player.isPlayerGrounded == false && pullup == false)
             {   
-                float pullforce = Mathf.Sqrt(2 * (1f+Player.jumpHeight) * Player.aerialGravity);
+                float pullforce = Mathf.Sqrt(2 * (.5f+Player.jumpHeight) * Player.aerialGravity);
 
                 float currentYvel = Player.rigid.velocity.y;
                 float trajectory = Mathf.Pow(pullforce - currentYvel, 2) / (2*Player.aerialGravity);
@@ -41,16 +45,29 @@ public class CrouchingState : PlayerBaseState
 
             // Set Camera to crouch height
             SetCameraHeight(Player.cameraCrouchPos);
+
+            // Non-kosher way of manipulating other states...
+            // Set player movement speed to crouch speed
+            Player.standState.playerMoveSpeed = Player.crouchSpeed;
         }
         else
         {
-            Player.stand_collision.enabled = true;
-            Player.crouch_collision.enabled = false;
+            if (Player.isUnderObject == false)
+            {
+                Player.stand_collision.enabled = true;
+                Player.crouch_collision.enabled = false;
 
-            // Set Camera to stand height
-            SetCameraHeight(Player.cameraStandPos);
+                // Set Camera to stand height
+                SetCameraHeight(Player.cameraStandPos);
+
+                // Set player speed back to walking speed.
+                Player.standState.playerMoveSpeed = Player.walkSpeed;
+            }
         }
 
+        Debug.Log(Player.isUnderObject);
+
+        // If the player has landed on solid ground...
         if (Player.isPlayerGrounded)
         {
             pullup = false;
