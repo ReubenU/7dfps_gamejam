@@ -6,8 +6,6 @@ public class JumpState : PlayerBaseState
 
     public JumpState(PlayerStateManager player) : base(player) {}
 
-    Vector3 refVelocity = new Vector3();
-
     public override void UpdateState()
     {
 

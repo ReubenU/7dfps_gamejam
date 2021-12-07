@@ -8,7 +8,8 @@ public class StandingState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Standing!");
+        Player.stand_collision.enabled = true;
+        Player.crouch_collision.enabled = false;
     }
 
     public override void UpdateState()

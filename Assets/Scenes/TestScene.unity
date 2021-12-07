@@ -406,6 +406,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1439543949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439543950}
+  - component: {fileID: 1439543951}
+  m_Layer: 0
+  m_Name: CrouchCollision
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439543950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439543949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3157458729470271026}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1439543951
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439543949}
+  m_Material: {fileID: 13400000, guid: 8702a1b4af7e05e439c9d2ebddaff2f0, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1710501765
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,8 +571,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: -1, z: 0}
+  m_Radius: 0.4
+  m_Center: {x: 0, y: -0.75, z: 0}
 --- !u!136 &3157458729470271025
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -555,6 +599,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3157458729802507266}
+  - {fileID: 1439543950}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -572,9 +617,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
   trans: {fileID: 0}
+  PlayerCamera: {fileID: 3157458729802507266}
   walkSpeed: 4
   sprintSpeed: 8
-  crouchSpeed: 2.5
   jumpHeight: 4
   aerialSpeed: 2
   groundGravity: 50
@@ -587,8 +632,14 @@ MonoBehaviour:
   isPlayerGrounded: 0
   isPlayerColliding: 0
   isPlayerFeetNearGround: 0
+  stand_collision: {fileID: 3157458729470271025}
+  crouch_collision: {fileID: 1439543951}
+  crouchSpeed: 2.5
+  crouchHeight: 1
+  standHeight: 2
   walkInputVector: {x: 0, y: 0}
   isJumping: 0
+  isCrouching: 0
 --- !u!1 &3157458729470271030
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +677,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3157458729470271032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,6 +795,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 38b3f4e9-81a6-4ef2-834e-5b2d719c1598
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3157458729470271027}
+        m_TargetAssemblyTypeName: PlayerStateManager, Assembly-CSharp
+        m_MethodName: GetCrouchInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0665da90-41ff-4741-b0de-4d3ef590ee31
+    m_ActionName: Player/Crouch[/Keyboard/leftCtrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

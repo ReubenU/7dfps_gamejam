@@ -14,13 +14,16 @@ public class PlayerStateManager : MonoBehaviour
     public AerialState aerialState;
 
     // Player's components
+    [Header("Player Components")]
     public Rigidbody rigid;
     public Transform trans;
 
-    // Player stats
+    public Transform PlayerCamera;
+
+    // Player settings
+    [Header("Player Settings")]
     public float walkSpeed = 5f;
     public float sprintSpeed = 10f;
-    public float crouchSpeed = 2.5f;
     public float jumpHeight = 3f;
     public float aerialSpeed = 2.5f;
 
@@ -36,9 +39,22 @@ public class PlayerStateManager : MonoBehaviour
     public bool isPlayerColliding = false;
     public bool isPlayerFeetNearGround = false;
     
+    // Crouch variables
+    [Header("Crouch Settings")]
+    public CapsuleCollider stand_collision;
+    public SphereCollider crouch_collision;
+
+    public float crouchSpeed = 2.5f;
+    public float cameraStandPos = 0.5f;
+    public float cameraCrouchPos = -0.5f;
+
+    
     // Player Controls
+    [Header("Player Controls")]
     public Vector2 walkInputVector;
     public bool isJumping = false;
+    public bool isCrouching = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +72,6 @@ public class PlayerStateManager : MonoBehaviour
         currentState = standState;
 
         currentState.EnterState();
-
         
     }
 
@@ -64,6 +79,10 @@ public class PlayerStateManager : MonoBehaviour
     void FixedUpdate()
     {
         currentState.UpdateState();
+
+        // Player's crouch state.
+        // Crouching state must be independent of other states.
+        crouchState.UpdateState();
     }
 
     // Switch state to a new state.
@@ -83,6 +102,13 @@ public class PlayerStateManager : MonoBehaviour
     public void GetJumpInput(InputAction.CallbackContext context)
     {
         isJumping = context.ReadValueAsButton();
+    }
+
+    // Crouch input handling...
+    public void GetCrouchInput(InputAction.CallbackContext context)
+    {
+        isCrouching = context.ReadValueAsButton();
+        Debug.Log(isCrouching);
     }
 
 
