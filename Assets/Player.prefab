@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3157458728482518430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 549.3, y: 18.43, z: 203.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3157458728311426986}
@@ -206,10 +206,5 @@ MonoBehaviour:
   isPlayerGrounded: 0
   isPlayerColliding: 0
   isPlayerFeetNearGround: 0
-  walkForward: 119
-  walkBackward: 115
-  walkLeft: 97
-  walkRight: 100
-  sprintKey: 304
-  crouchKey: 306
-  jumpKey: 32
+  walkInputVector: {x: 0, y: 0}
+  isJumping: 0
