@@ -31,7 +31,7 @@ public class CrouchingState : PlayerBaseState
             Player.crouch_collision.enabled = true;
 
             // If the player wants to crouch while in midair or crouch-jump:
-            if (Player.isPlayerGrounded == false && pullup == false)
+            if (Player.isPlayerGrounded == false && pullup == false && Player.rigid.velocity.y > 0f)
             {   
                 float pullforce = Mathf.Sqrt(2 * (.5f+Player.jumpHeight) * Player.aerialGravity);
 
